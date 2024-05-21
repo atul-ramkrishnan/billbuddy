@@ -1,0 +1,36 @@
+/* Add this to your stylesheet or create a new one */
+
+.container {
+  width: 100vw;
+  margin: 10px; /* Add a small margin */
+  padding: 20px; /* Add a small padding */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+header {
+  height: 50px; /* Set the height to 50px (adjust to your liking) */
+  padding: 0px 0px; /* Reduce the padding to account for the reduced height */
+  display: flex; /* Keep the flex layout */
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.sidenav {
+  padding: 5px;
+  background-color: #cfd5e7; /* Change the sidebar background color */
+  height: 100%;
+  border: 1px solid black;
+}
+
+h1, h2, h4 {
+  color: #00698f; /* Change the heading text color */
+}
+
+.btn-secondary {
+  background-color: #00698f; /* Change the button background color */
+  color: #ffffff; /* Change the button text color */
+}

@@ -13,7 +13,9 @@ import {
     EDIT_PERSON, EDIT_PRODUCT, EditAction,
     SELECT_PERSON,
     SELECT_PRODUCT,
-    SelectAction
+    SelectAction,
+    SET_INITIAL_STATE,
+    SetInitialStateAction,
 } from "./actions";
 
 
@@ -30,7 +32,7 @@ const initialAppState: IAppState = {
     selectedProductId: null
 };
 
-type ActionType = SelectAction | AddPersonAction | AddProductAction | DeleteAction | ClearAction | EditAction;
+export type ActionType = SelectAction | AddPersonAction | AddProductAction | DeleteAction | ClearAction | EditAction | SetInitialStateAction;
 
 const appReducer: Reducer<IAppState, ActionType> = (state = initialAppState, action) => {
     let newState = {...state};
@@ -102,6 +104,8 @@ const appReducer: Reducer<IAppState, ActionType> = (state = initialAppState, act
             return newState;
         case CLEAR_PEOPLE:
             return {...state, people: [], selectedPersonId: null, selectedProductId: null};
+        case SET_INITIAL_STATE:
+            return action.payload;
         default: {
             return state;
         }

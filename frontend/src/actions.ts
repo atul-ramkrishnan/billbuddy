@@ -1,3 +1,4 @@
+import { IAppState } from "./reducers";
 
 export const SELECT_PERSON = 'SELECT_PERSON';
 export type SELECT_PERSON = typeof SELECT_PERSON;
@@ -147,3 +148,17 @@ export function editProduct(id: number, name: string, price: number, setSelected
 }
 
 export type EditAction = EditProductAction | EditPersonAction;
+
+export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
+
+export interface SetInitialStateAction {
+    type: typeof SET_INITIAL_STATE;
+    payload: IAppState;
+}
+
+export function setInitialState(state: IAppState): SetInitialStateAction {
+    return {
+        type: SET_INITIAL_STATE,
+        payload: state
+    };
+}

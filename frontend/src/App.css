@@ -34,3 +34,6 @@ h1, h2, h4 {
   background-color: #00698f; /* Change the button background color */
   color: #ffffff; /* Change the button text color */
 }
+.badge {
+  margin-left: 100px;
+}

@@ -5,11 +5,30 @@ import ProductSection from "./components/ProductSection";
 import PeopleSection from "./components/PeopleSection";
 import ResultsSection from "./components/ResultsSection";
 import Button from "./components/ui/Button";
-import { clearPeople } from "./actions";
+import { clearPeople, setInitialState } from "./actions";
+import { Dispatch } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import { Person, Product } from './Logic';
+import { ActionType } from './reducers';
 
+const URL = "http://127.0.0.1:8000/users/"
 const App: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<ActionType> = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetch(URL);
+      const data = await result.json();
+      const people = data.users.map((user: any) => new Person(user.id, user.name, user.items.map((item: any) => new Product(item.id, item.name, item.cost))));
+      const initialState = {
+        people: people,
+        selectedPersonId: null,
+        selectedProductId: null
+      };
+      dispatch(setInitialState(initialState));
+    }
+    fetchData();
+  }, [dispatch]);
 
   // const handleClearPeople = () => {
   //   dispatch(clearPeople());

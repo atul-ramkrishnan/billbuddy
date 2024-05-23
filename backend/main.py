@@ -18,7 +18,7 @@ app = FastAPI(
     summary="A simple API for managing shared expenses.",
 )
 
-origins = ['https://localhost:3000']
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,

@@ -1,4 +1,6 @@
+import { Dispatch } from 'redux';
 import { IAppState } from "./reducers";
+import axios from 'axios';
 
 export const SELECT_PERSON = 'SELECT_PERSON';
 export type SELECT_PERSON = typeof SELECT_PERSON;
@@ -35,11 +37,26 @@ export interface AddPersonAction {
     type: ADD_PERSON;
     name: string;
 }
-export function addPerson(name: string): AddPersonAction {
-    console.log("addPerson action", name);
-    return {
-        type: ADD_PERSON,
-        name: name
+// export function addPerson(name: string): AddPersonAction {
+//     console.log("addPerson action", name);
+//     return {
+//         type: ADD_PERSON,
+//         name: name
+//     };
+// }
+export const addPerson = (name: string) => {
+    return async (dispatch: Dispatch<AddPersonAction>, getState: () => IAppState) => {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/users/', { name });
+            if (response.status === 201) {
+                dispatch({
+                    type: ADD_PERSON,
+                    name: response.data.name
+                });
+            }
+        } catch (error) {
+            console.error('Error adding person to the database:', error);
+        }
     };
 }
 

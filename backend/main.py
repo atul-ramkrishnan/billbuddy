@@ -51,7 +51,7 @@ class UserModel(BaseModel):
     # but provided as `id` in the API requests and responses.
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     name: str = Field(...)
-    items: List[Item]
+    items: List[Item] = []
     model_config = ConfigDict(
         populate_by_name=True,
         arbitrary_types_allowed=True,
